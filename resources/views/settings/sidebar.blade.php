@@ -13,8 +13,8 @@
 
         <ul class="menu-inner py-1">
           <!-- Dashboard -->
-          <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+          <li class="menu-item">
+            <a href="{{url('/add_posts')}}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
               <div data-i18n="Analytics">Add Post</div>
             </a>
@@ -22,39 +22,27 @@
 
           <!-- Layouts -->
           <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-layout"></i>
-              <div data-i18n="Layouts">Category</div>
+            <a href="{{url('/view_categories')}}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Analytics">Categories</div>
             </a>
-
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="{{url('/view_categories')}}" class="menu-link">
-                  <div data-i18n="Without menu">View Category</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
-                  <div data-i18n="Without navbar">Add Category</div>
-                </a>
-              </li>
-            </ul>
           </li>
-
+         
+          <!-- Blogs -->
           <li class="menu-header small text-uppercase">
             <span class="menu-header-text">My Blogs</span>
           </li>
           <li class="menu-item">
-            <a href="index.html" class="menu-link">
+            <a href="{{url('view_posts')}}" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Analytics">View Post</div>
+              <div data-i18n="Analytics">Your Posts</div>
             </a>
           </li>
           <li class="menu-header small text-uppercase">
             <span class="menu-header-text text-danger">Go Back</span>
           </li>
           <li class="menu-item">
-            <a href="{{url('/redirect')}}" class="menu-link">
+            <a href="{{url('/redirect')}}" class="menu-link text-danger">
               
               <div data-i18n="Analytics">Return to Home</div>
             </a>

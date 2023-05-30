@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('category');
             $table->string('tags');
+            $table->string('Author');
             $table->timestamps();
         });
     }

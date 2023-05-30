@@ -37,12 +37,12 @@
           </div>
           <div class="col-md-2">
             <div class="product-short">
-              <select name="order" class="form-control" id="cars">
+              <select name="category" class="form-control" id="cars">
                 <option value="">Category</option>
 
-
-                <option value=""></option>
-                
+                @foreach ($category as $category)
+                <option value="{{$category->category}}">{{$category->category}}</option>
+                @endforeach
               </select>
 
             </div>
@@ -51,9 +51,9 @@
             <div class="product-price-range">
               <select name="range" class="form-control" id="cars">
                 <option value="">Author</option>
-
-                <option value=""></option>
-
+                @foreach ($user as $user)
+                <option value="{{$user->name}}">{{$user->name}}</option>
+                @endforeach
 
               </select>
             </div>
@@ -86,7 +86,7 @@
       </form>
       @if (Route::has('login'))
       @auth
-      <a href="{{url('/add_posts')}}" class="mt-2 btn btn-warning bg-warning"> Add Posts </a>
+      <a href="{{url('/add_posts')}}" class="mt-2 btn btn-warning bg-warning"> Post Settings </a>
       @else
       @endauth
       @endif
@@ -99,121 +99,31 @@
           <h4 class="mb-5"><strong>Latest posts</strong></h4>
 
           <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
+           
+            @foreach ($post as $post)
+              @php
+                $excerpt =  mb_strimwidth($post->content, 0, 80, "[..]");
+                $date = date('F j, Y', strtotime($post->created_at));
+              @endphp
+              <div class="col-lg-4 col-md-12 mb-4">
+                <div class="card">
+                  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="thumbnail/{{$post->thumbnail}}" class="img-fluid" style="float: left; width:100%; height: 200px; object-fit:cover;" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title mt-1"><strong>{{$post->title}}</strong></h5>
+                    <p class="card-text mt-4">{{$post->Author}} <span>- {{$date}}</span></p>
+                    <p class="card-text mt-4">
+                      {{$excerpt}}
+                    </p>
+                    <a href="#!" class="btn btn-primary mt-2">Read More</a>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/002.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/022.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbootstrap.com/img/new/standard/nature/035.jpg" class="img-fluid" />
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Post title</h5>
-                  <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's content.
-                  </p>
-                  <a href="#!" class="btn btn-primary">Read</a>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </section>
         <!--Section: Content-->

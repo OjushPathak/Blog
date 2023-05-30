@@ -15,6 +15,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="template/assets/img/favicon/favicon.ico" />
+  
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +36,7 @@
   <link rel="stylesheet" href="templatemplate/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
   <link rel="stylesheet" href="templatemplate/assets/vendor/libs/apex-charts/apex-charts.css" />
+  
 
   <!-- Page CSS -->
 
