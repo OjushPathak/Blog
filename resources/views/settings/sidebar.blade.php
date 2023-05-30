@@ -20,11 +20,19 @@
             </a>
           </li>
 
-          <!-- Layouts -->
+          <!-- Category -->
           <li class="menu-item">
             <a href="{{url('/view_categories')}}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-layout"></i>
               <div data-i18n="Analytics">Categories</div>
+            </a>
+          </li>
+
+          <!-- Tags -->
+          <li class="menu-item">
+            <a href="{{url('/view_tags')}}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-layout"></i>
+              <div data-i18n="Analytics">Tags</div>
             </a>
           </li>
          

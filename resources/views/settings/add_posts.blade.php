@@ -46,15 +46,16 @@
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlSelect1" class="form-label">Choose Tags</label>
-                    <select class="form-control" name="tags"  multiple>
-                      <option selected>Select Tags</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
+                  <label for="exampleFormControlSelect1" class="form-label">Choose Tags</label>
+                  @foreach ($tag as $tag)
+                  <div class="input-group">
+                        <div class="input-group-text">
+                          <input class="form-check-input mt-0" type="checkbox" name="tag[]" value="{{$tag->tag}}" />
+                        </div>
+                        <input type="text" value="{{$tag->tag}}" readonly class="form-control" />
                   </div>
-                  <button type="submit" class="btn btn-primary">Post</button>
+                  @endforeach
+                  <button type="submit" class="btn btn-primary mt-3">Post</button>
                 </div>
               </div>
             </div>

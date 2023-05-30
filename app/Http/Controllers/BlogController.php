@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\category;
-use App\Models\tags;
+use App\Models\Tag;
 use App\Models\post;
 use App\Models\User;
 
@@ -14,7 +14,7 @@ class BlogController extends Controller
     public function add_posts(){
 
         $category = Category::all();
-        $tag = tags::all();
+        $tag = tag::all();
         return view('settings.add_posts',compact('category','tag'));
     }
 
@@ -36,7 +36,7 @@ class BlogController extends Controller
         $request -> thumbnail->move('thumbnail',$imagename);
         $blog -> thumbnail = $imagename;
         $blog->category = $request->category;
-        $blog->tags = $request->tags;
+        $blog->tags = json_encode( $request->tag);
         $blog->author = Auth::user()->name; 
         $blog->save();
         return redirect()->back();
@@ -53,7 +53,7 @@ class BlogController extends Controller
     public function update_post($id){
         $post = post::find($id);
         $category = Category::all();
-        $tag = tags::all();
+        $tag = Tag::all();
         return view('settings.update_post',compact('post','category','tag'));
     }
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,15 @@ Route::middleware([
 
 Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 
+Route::get('/blog_details/{id}',[HomeController::class,'blog_details']);
+
 // Blog Controller
 Route::get('/add_posts',[BlogController::class,'add_posts'])->middleware('auth','verified');
 
 Route::post('/post_blog',[BlogController::class,'post_blog'])->middleware('auth','verified');
 
 Route::get('/view_posts',[BlogController::class,'view_posts'])->middleware('auth','verified');
+
 
 Route::get('/delete_post/{id}',[BlogController::class,'delete_post'])->middleware('auth','verified');
 
@@ -55,3 +59,12 @@ Route::post('/update_category/{id}',[CategoryController::class,'update_category'
 Route::post('/add_category',[CategoryController::class,'add_category'])->middleware('auth','verified');
 
 Route::get('/delete_category/{id}',[CategoryController::class,'delete_category'])->middleware('auth','verified');
+
+// Tags COntroller
+Route::get('/view_tags',[TagController::class,'view_tags'])->middleware('auth','verified');
+
+Route::post('/update_tag/{id}',[TagController::class,'update_tag'])->middleware('auth','verified');
+
+Route::post('/add_tags',[TagController::class,'add_tags'])->middleware('auth','verified');
+
+Route::get('/delete_tag/{id}',[TagController::class,'delete_tag'])->middleware('auth','verified');

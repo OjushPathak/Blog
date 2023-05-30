@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\category;
-use App\Models\tags;
+use App\Models\Tag;
 use App\Models\post;
 use App\Models\User;
 

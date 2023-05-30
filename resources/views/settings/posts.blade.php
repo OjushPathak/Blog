@@ -39,7 +39,16 @@
                     <tr>
                       <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong></strong>{{$post->title}}</strong></td>
                       <td><a href="{{url('/view_categories')}}">{{$post->category}}</a></td>
-                      <td>Tag1,Tag2,Tag3,Tag4</td>
+                      <td>
+                        @php
+                        $decoded_tag = json_decode($post->tags)
+                        @endphp
+
+                        @foreach ($decoded_tag as $tagg)
+                        {{$tagg}}&nbsp;
+                        @endforeach
+                        
+                      </td>
                       <td>{{$date}}</td>
                       
                       <td>
