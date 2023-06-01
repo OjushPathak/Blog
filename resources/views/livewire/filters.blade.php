@@ -6,15 +6,15 @@
 
           <div class="col-md-4">
             <div class="product-search">
-              <input type="text" class="form-control" value="" wire:model="searchTerm" placeholder="Search" name="search">
+              <input type="text" class="form-control" value="" wire:model="query" wire:keyup.debounce="filter" placeholder="Search by title" name="search">
             </div>
           </div>
           <div class="col-md-2">
             <div class="product-short">
-              <select wire:model="byCategory" name="category" class="form-control" id="cars">
+              <select wire:model="category" wire:change="filter" name="category" class="form-control" id="cars">
                 <option value="">Category</option>
 
-                @foreach ($category as $category)
+                @foreach ($categories as $category)
                 <option value="{{$category->category}}">{{$category->category}}</option>
                 @endforeach
               </select>
@@ -23,7 +23,7 @@
           </div>
           <div class="col-md-2">
             <div class="product-price-range">
-              <select wire:model="byAuthor" name="author" class="form-control" id="">
+              <select wire:model="Author" wire:change="filter" name="author" class="form-control" id="">
                 <option value="">Author</option>
                 @foreach ($user as $user)
                 <option value="{{$user->name}}">{{$user->name}}</option>
@@ -41,7 +41,7 @@
             <div class="product-short">
 
 
-              <select wire:model="byTags" name="tags" class="form-control" id="">
+              <select wire:model="tags" wire:change="filter" name="tags" class="form-control" id="">
                 <option value="">Tags</option>
                 @foreach ($tag as $tag)
                 <option>{{$tag->tag}}</option>
@@ -69,45 +69,3 @@
  
 
     
-
-    <main class="my-5">
-      <div class="container">
-        <!--Section: Content-->
-        <section class="text-center">
-          <h4 class="mb-5"><strong>Latest posts</strong></h4>
-
-          <div class="row">
-
-            @foreach ($post as $post)
-            @php
-            $excerpt = mb_strimwidth($post->content, 0, 80, "[..]");
-            $date = date('F j, Y', strtotime($post->created_at));
-            @endphp
-            <div class="col-lg-4 col-md-12 mb-4">
-              <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <a href="{{url('blog_details',$post->id)}}"><img src="thumbnail/{{$post->thumbnail}}" class="img-fluid"
-                    style="float: left; width:100%; height: 200px; object-fit:cover;" /></a>
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title mt-1"> <a href="{{url('blog_details',$post->id)}}" class="text-dark">{{$post->title}}</a></h5>
-                  <p class="card-text mt-4">{{$post->Author}} <span>- {{$date}}</span></p>
-                  <p class="card-text mt-4">
-                    {{$excerpt}}
-                  </p>
-                  <a href="{{url('blog_details',$post->id)}}" class="btn btn-primary mt-2">Read More</a>
-                </div>
-              </div>
-            </div>
-            @endforeach
-          </div>
-        </section>
-        <!--Section: Content-->
-      </div>
-    </main>
-    <!--Main layout-->
-  </div>
-

@@ -12,18 +12,27 @@ use Livewire\Component;
 
 class Filters extends Component
 {
-    public $searchTerm='';
+
+    public $category;  
+    public $Author; 
+    public $tags; 
+    public $query;
+
+    
     
     public function render()
     {
         
         $post = post::orderBy('id','desc')->get();
-        $category = category::all();
+        $categories= category::get();
         $user = User::all();
         $tag = Tag::all();
 
-        return view('livewire.filters',compact('post','category','user','tag'));
-
-
+        return view('livewire.filters',['categories'=>$categories,'post'=>$post,'user'=>$user,'tag'=>$tag]);
     }
+
+    public function filter(){
+        $this->emitTo('showfilters','reloadPosts',$this->category,$this->Author,$this->tags,$this->query);
+    }
+     
 }

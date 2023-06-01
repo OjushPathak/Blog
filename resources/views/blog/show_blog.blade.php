@@ -19,7 +19,10 @@
     @endif
 
     <!--Main layout-->
-    @livewire('filters')
+    <livewire:filters />
+
+    
+    <livewire:showfilters />
   
 @livewireScripts
 @include('blog.footer')
