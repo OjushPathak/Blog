@@ -21,11 +21,8 @@ class HomeController extends Controller
     
     public function redirect(){
         
-        $post = post::orderBy('id','desc')->get();
-        $category = category::all();
-        $user = User::all();
-        $tag = Tag::all();
-        return view('blog.show_blog',compact('post','category','user','tag'));
+       
+        return view('blog.show_blog');
     }
 
     public function blog_details($id){

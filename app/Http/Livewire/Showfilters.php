@@ -8,9 +8,10 @@ use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 class Showfilters extends Component
 {
+    use WithPagination;
 
     public $posts;
 
@@ -24,6 +25,7 @@ class Showfilters extends Component
 
     public function render()
     {
+     
         return view('livewire.showfilters');
     }
     
@@ -56,7 +58,7 @@ class Showfilters extends Component
             $this->posts = $this->posts->where('title','like','%'.$query.'%');
         }
 
-        $this->posts = $this->posts->get();
+        $this->posts = $this->posts->orderBy('id', 'desc')->get();
     }
 
 

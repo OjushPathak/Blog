@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\Tag;
 use App\Models\post;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -17,6 +18,7 @@ class CategoryController extends Controller
             $new_category = new category();
             $new_category->category = $request->new_category;
             $new_category->save();
+            Alert::success('Category Added','Category has been Added Successfully.');
             return redirect()->back();
     }
 
@@ -31,12 +33,14 @@ class CategoryController extends Controller
         $category = category::find($id);
         $category->category = $request->category;
         $category->save();
+        Alert::success('Category Updated','Category has been Updated Successfully.');
         return redirect()->back();
     }
 
     public function delete_category($id){
         $delete_category = category::find($id);
         $delete_category->delete();
+        Alert::success('Category Deleted','Category has been Deleted Successfully.');
         return redirect()->back();
     }
 }

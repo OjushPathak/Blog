@@ -8,6 +8,8 @@ use App\Models\category;
 use App\Models\Tag;
 use App\Models\post;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class BlogController extends Controller
 {
@@ -39,6 +41,7 @@ class BlogController extends Controller
         $blog->tags = json_encode( $request->tag);
         $blog->author = Auth::user()->name; 
         $blog->save();
+        Alert::success('Post Added','Post has been Added Successfully.');
         return redirect()->back();
 
     }
@@ -80,13 +83,16 @@ class BlogController extends Controller
         $blog->tags = $request->tags;
         $blog->author = Auth::user()->name; 
         $blog->save();
+        Alert::success('Post Updated','Post has been Updated.');
         return redirect('/view_posts');
+        
     }
     public function delete_post($id){
 
         $delete_post = post::find($id);
         $delete_post -> delete();
-        return redirect() -> back() -> with('message','Post Deleted Successfully.');
+        Alert::success('Post Deleted','Post has been Deleted.');
+        return redirect() -> back();
 
     }
 }

@@ -14,6 +14,7 @@
 
         <!-- Content wrapper -->
         <div class="content-wrapper">
+        @include ('sweetalert::alert')
 
           <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Post Settings /</span> View Posts</h4>
@@ -40,13 +41,21 @@
                       <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong></strong>{{$post->title}}</strong></td>
                       <td><a href="{{url('/view_categories')}}">{{$post->category}}</a></td>
                       <td>
-                        @php
+
+                      @if(($post->tags=="Select Tags"))
+                      No Tag
+                       
+                      @else
+
+                      @php
                         $decoded_tag = json_decode($post->tags)
                         @endphp
 
                         @foreach ($decoded_tag as $tagg)
-                        {{$tagg}}&nbsp;
+                        {{$tagg}}
                         @endforeach
+                       
+                       @endif
                         
                       </td>
                       <td>{{$date}}</td>
