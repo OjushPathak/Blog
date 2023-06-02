@@ -25,16 +25,16 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <div class="mb-3">
-                    <label for="" class="form-label">Post Title</label>
+                    <label for="" class="form-label">Post Title <span class="text-danger">@error('title')*{{$message}}*@enderror</span></label>
                     <input type="text" class="form-control" id="" name="title" placeholder="Title" />
                   </div>
 
                   <div>
-                    <label for="" class="form-label">Content</label>
+                    <label for="" class="form-label">Content <span class="text-danger">@error('content')*{{$message}}*@enderror</span></label>
                     <textarea name="content" class="form-control" id="" rows="7"></textarea>
                   </div>
                   <div class="mb-3">
-                    <label for="" class="form-label">Choose Thumbnail</label>
+                    <label for="" class="form-label">Choose Thumbnail <span class="text-danger">@error('thumbnail')*{{$message}}*@enderror</span></label>
                     <input name="thumbnail" class="form-control" type="file" id="" accept="image/*"/>
                   </div>
                   <div class="mb-3">
@@ -48,7 +48,7 @@
                     </select>
                   </div>
                   <div class="mb-3">
-                  <label for="exampleFormControlSelect1" class="form-label">Choose Tags</label>
+                  <label for="exampleFormControlSelect1" class="form-label">Choose Tags <span class="text-danger">@error('tag')*{{$message}}*@enderror</span></label>
                   @foreach ($tag as $tag)
                   <div class="input-group">
                         <div class="input-group-text">

@@ -25,9 +25,9 @@ class BlogController extends Controller
         $request->validate([
             'title'=>'required',
             'content'=>'required',
-            'thumbnail'=>'nullable',
+            'thumbnail'=>'required',
             'category'=>'nullable',
-            'tags'=>'nullable'
+            'tag'=>'required'
         ]);
 
         $blog = new post();
@@ -65,9 +65,9 @@ class BlogController extends Controller
         $request->validate([
             'title'=>'required',
             'content'=>'required',
-            'thumbnail'=>'nullable',
+            'thumbnail'=>'required',
             'category'=>'nullable',
-            'tags'=>'nullable'
+            'tag'=>'required'
         ]);
         
         $blog = post::find($id);
@@ -80,7 +80,7 @@ class BlogController extends Controller
         $blog -> thumbnail = $imagename;
         }
         $blog->category = $request->category;
-        $blog->tags = $request->tags;
+        $blog->tags = json_encode( $request->tag);
         $blog->author = Auth::user()->name; 
         $blog->save();
         Alert::success('Post Updated','Post has been Updated.');

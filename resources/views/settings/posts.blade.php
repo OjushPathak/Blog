@@ -42,7 +42,8 @@
                       <td><a href="{{url('/view_categories')}}">{{$post->category}}</a></td>
                       <td>
 
-                      @if(($post->tags=="Select Tags"))
+                      @if(($post->tags == '["picnic"]'))
+
                       No Tag
                        
                       @else

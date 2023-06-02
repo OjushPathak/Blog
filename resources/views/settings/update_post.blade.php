@@ -16,7 +16,7 @@
         @include ('sweetalert::alert')
 
           <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Post Settings /</span> Add Post</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Post Settings /</span> Edit Post</h4>
             <!-- Form controls -->
             <form action="{{url('/update_post_confirm',$post->id)}}" method="post" enctype="multipart/form-data">
               @csrf
@@ -24,12 +24,12 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <div class="mb-3">
-                    <label for="" class="form-label">Post Title</label>
+                    <label for="" class="form-label">Post Title <span class="text-danger">@error('title')*{{$message}}*@enderror</span></label>
                     <input type="text" class="form-control" id="" name="title" placeholder="Title" value="{{$post->title}}" />
                   </div>
 
                   <div>
-                    <label for="" class="form-label">Content</label>
+                    <label for="" class="form-label">Content <span class="text-danger">@error('content')*{{$message}}*@enderror</span></label>
                     <textarea name="content" class="form-control" id="" rows="7">{{$post->content}}</textarea>
                   </div>
 
@@ -53,15 +53,27 @@
                     </select>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlSelect1" class="form-label">Choose Tags</label>
-                    <select class="form-control" name="tags"  multiple>
-                      <option selected>Select Tags</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
+                    <label for="exampleFormControlSelect1" class="form-label">Choose Tags <span class="text-danger">@error('tag')*{{$message}}*@enderror</span></label>
+                    @foreach ($tag as $tag)
+                  <div class="input-group">
+                        <div class="input-group-text">
+                        @php
+                          $decoded_tag = json_decode($post->tags)
+                        @endphp
+                          <input class="form-check-input mt-0" type="checkbox" name="tag[]" value="{{$tag->tag}}"
+                          <?php foreach($decoded_tag as $tagg){
+                                    if($tag->tag == $tagg){ ?>
+                                     checked 
+                          <?php }
+                                else{}} ?>
+                          />
+                        </div>
+                        <input type="text" value="{{$tag->tag}}" readonly class="form-control" />
                   </div>
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  
+                  @endforeach
+                  @error('') <div class="alert alert-danger">{{ $message }}</div> @enderror
+                  <button type="submit" class="btn btn-primary mt-3">Post</button>
                 </div>
               </div>
             </div>

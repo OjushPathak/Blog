@@ -10,6 +10,8 @@
     $('#example-multiple-selected').multiselect();
 </script>
 
+
+
   <!-- Template Main JS File -->
   <script src="Append/assets/js/main.js"></script>
 
